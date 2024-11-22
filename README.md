@@ -58,7 +58,7 @@ Job Schedule:
 
 All top-paying roles are full-time, reflecting the demand for dedicated expertise in these fields.
 
-![Top Paying Roles](assets\q1.png)
+![Top Paying Roles](assets/q1.png)
 *Bar graph visualizing the salary for the top 8 salaries for data analysts; ChatGPT generated this graph from my SQL query results*
 
 ### 2. Skills for Top Paying Jobs
@@ -104,7 +104,7 @@ Machine Learning and Cloud Computing are becoming increasingly relevant, reflect
 - **Soft Skills**:
 Skills such as Communication Skills, Problem Solving, and Critical Thinking are crucial, highlighting the importance of conveying insights and solving business problems effectively.
 
-![Most Demanded Skills](assets\q2.png)
+![Most Demanded Skills](assets/q2.png)
 *Bar graph visualizing the count of skills for the top 25 paying jobs for data analysts; ChatGPT generated this graph from my SQL query results*
 
 # What I Learned
