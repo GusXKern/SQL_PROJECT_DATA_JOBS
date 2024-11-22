@@ -1,7 +1,7 @@
 /*most in demand skills for a Data Analyst?
--Join job postings to inner join tacle similar to Q2
--ID the top 10 in-demand skills for a data analyst
--Focus on all job postings
+-Join job postings to inner join; similar to Q2
+-ID the top 10 in-demand skills for a data analyst in NYC
+-Focus on all Data Analyst postings
 -Why? Shows us the five most in-demand skills to help steer learning.
 */
 
@@ -11,6 +11,11 @@ SELECT
 FROM job_postings_fact
 INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_title_short = 'Data Analyst' AND
+    job_location = 'New York, NY'
 GROUP BY
     skills
-LIMIT 5
+ORDER BY
+    demand_count DESC
+LIMIT 10
