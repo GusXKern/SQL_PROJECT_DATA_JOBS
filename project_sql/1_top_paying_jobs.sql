@@ -1,6 +1,6 @@
 /*
 Q: What are the top paying data analyst jobs?
-- ID top 50 that are remote
+- ID top 50 that are based in NYC
 - Remove NULLS
 - Why? To highlight the top-paying opportunities for Data Analysts! */
 

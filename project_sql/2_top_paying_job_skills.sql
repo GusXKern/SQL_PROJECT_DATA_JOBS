@@ -1,6 +1,6 @@
 /*
 Q: What skills are required for the top-paying data analyst jobs?
--Use the top 50 highest paying D.A. jobs from the 1st Query
+-Use the top 25 highest paying D.A. jobs from the 1st Query
 -Add the specific skills required for these roles
 -Why? It provides a detailed look at which high-paying jobs demand certain skills.
     helping job seekers understand which skills they need to develop.
@@ -20,7 +20,7 @@ WITH top_skills AS
     job_location = 'New York, NY' AND 
     salary_year_avg IS NOT NULL
     ORDER BY salary_year_avg DESC
-    LIMIT 50
+    LIMIT 25
     )
 
 SELECT
