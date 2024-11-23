@@ -107,6 +107,108 @@ Skills such as Communication Skills, Problem Solving, and Critical Thinking are 
 ![Most Demanded Skills](assets/q2.png)
 *Bar graph visualizing the count of skills for the top 25 paying jobs for data analysts; ChatGPT generated this graph from my SQL query results*
 
+### 3. In-Demand Skills for Data Analysts
+
+This query helped identify the skills most frequently requested in job postings, directing focus to areas with high demand.
+
+```sql
+SELECT 
+    skills,
+    COUNT(skills_job_dim.job_id) AS demand_count
+FROM job_postings_fact
+INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_title_short = 'Data Analyst' AND
+    job_location = 'New York, NY'
+GROUP BY
+    skills
+ORDER BY
+    demand_count DESC
+LIMIT 10 
+```
+Here's the breakdown of the most demanded skills for data analysts in 2023
+- **SQL** and **Excel** remain fundamental, emphasizing the need for strong foundational skills in data processing and spreadsheet manipulation.
+- **Programming** and **Visualization Tools** like **Python**, **Tableau**, and **Power BI** are essential, pointing towards the increasing importance of technical skills in data storytelling and decision support.
+
+![Skill Mention Frequency](assets/q3.png)
+*Bar graph visualizing the demand of skills for the NYC Data Analyst jobs; I made this visualization in PowerBI using CSV data generated from my SQL query results*
+
+### 4. Skills Based on Salary
+Exploring the average salaries associated with different skills revealed which skills are the highest paying.
+```sql
+SELECT 
+    skills,
+    ROUND(AVG(salary_year_avg),0) AS average_salary
+FROM job_postings_fact
+INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_title_short = 'Data Analyst' AND
+    job_location = 'New York, NY' AND
+    salary_year_avg IS NOT NULL
+GROUP BY
+    skills
+ORDER BY
+    AVG(salary_year_avg) DESC
+LIMIT 50
+```
+
+![Average Salary by Skill](assets/q4.png)
+*Bar graph visualizing the average salary associated with each skill for NYC Data Analyst jobs; I made this visualization in PowerBI using CSV data generated from my SQL query results*
+
+### 5. Most Optimal Skills to Learn
+
+Combining insights from demand and salary data, this query aimed to pinpoint skills that are both in high demand and have high salaries, offering a strategic focus for skill development.
+
+```sql
+WITH skills_demand AS (
+        SELECT 
+        skills_dim.skill_id,
+        skills_dim.skills,
+        COUNT(skills_job_dim.job_id) AS demand_count
+    FROM job_postings_fact
+    INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+    INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+    WHERE
+        job_title_short = 'Data Analyst' AND
+        job_location = 'New York, NY' AND
+        salary_year_avg IS NOT NULL
+    GROUP BY
+        skills_dim.skill_id
+    ), skills_avg_salary AS (
+        SELECT 
+        skills_dim.skill_id,
+        ROUND(AVG(salary_year_avg),0) as avg_salary
+    FROM job_postings_fact
+    INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+    INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+    WHERE
+        job_title_short = 'Data Analyst' AND
+        job_location = 'New York, NY' AND
+        salary_year_avg IS NOT NULL
+    GROUP BY
+        skills_dim.skill_id
+    )
+
+SELECT
+    skills_demand.skill_id,
+    skills_demand.skills,
+    demand_count,
+    avg_salary
+FROM
+    skills_demand
+INNER JOIN skills_avg_salary ON skills_demand.skill_id = skills_avg_salary.skill_id
+WHERE
+    demand_count > 10
+ORDER BY
+    avg_salary DESC,
+    demand_count DESC
+LIMIT 25
+```
+![Most Optimal Skill](assets/q5.png)
+*Bar graph visualizing both the average salary, denoted by the blue bars, and the demand, denoted by the blue line, associated with each skill for the NYC Data Analyst jobs. I set a minimum of 10 job postings to elimitate outlier skills. I made this visualization in PowerBI using CSV data generated from my SQL query results*
+
 # What I Learned
 
 From working on this project, I've learned many important basic and advanced SQL skills:
@@ -127,5 +229,4 @@ From the analysis, several general insights emerged:
 5. **Optimal Skills for Job Market Value**: SQL leads in demand and offers for a high average salary, positioning it as one of the most optimal skills for data analysts to learn to maximize their market value.
 
 ### Closing Thoughts
-
 This project enhanced my SQL skills and provided valuable insights into the data analyst job market. The findings from the analysis serve as a guide to prioritizing skill development and job search efforts. Aspiring data analysts can better position themselves in a competitive job market by focusing on high-demand, high-salary skills. This exploration highlights the importance of continuous learning and adaptation to emerging trends in the field of data analytics.
