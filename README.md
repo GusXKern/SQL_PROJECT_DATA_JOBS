@@ -153,6 +153,21 @@ ORDER BY
     AVG(salary_year_avg) DESC
 LIMIT 50
 ```
+**Key Observations**:
+
+- **Cloud and Big Data Skills**: Cloud-related tools like GCP ($135,294), Azure ($122,692), and AWS ($106,888) are well-compensated, demonstrating the importance of cloud computing in data analytics.
+Big data tools such as Kafka ($135,000) and Spark ($105,242) highlight the demand for distributed data processing expertise.
+
+- **Data Visualization and Analytics Tools**: Skills like Tableau ($100,030), Qlik ($120,763), and Looker ($111,020) indicate that data storytelling and visualization remain critical but are not among the top-paying skills.
+Plotly ($122,500) is a standout among visualization libraries, suggesting increased demand for interactive, code-based visualizations.
+
+- **Popular Generalist Tools and Frameworks**:
+Python ($110,396) and its related libraries like Pandas ($133,169) and Numpy ($125,062) are well-paid, highlighting their versatility across roles.
+Generalist frameworks like Java ($125,147) and Angular ($138,516) indicate demand for integration between analytics and application development.
+
+- **Database and Query Skills**:
+SQL remains the backbone for most data roles, with SQL Server ($114,327) and MySQL ($99,500) being well-paid.
+Tools like Snowflake ($119,577) and MongoDB ($100,000) reflect increasing demand for modern data warehousing and NoSQL solutions.
 
 ![Average Salary by Skill](assets/q4.png)
 *Bar graph visualizing the average salary associated with each skill for NYC Data Analyst jobs; I made this visualization in PowerBI using CSV data generated from my SQL query results*
@@ -206,6 +221,25 @@ ORDER BY
     demand_count DESC
 LIMIT 25
 ```
+**Actionable Recommendations for Job Seekers**:
+
+- **Learn Core Skills First**:
+Prioritize SQL and Python, as they have high demand and versatility.
+Add Excel to your skillset, as it is foundational and often used for reporting and quick analysis.
+
+- **Invest in Visualization**:
+Tableau and Power BI are essential for communicating insights effectively, making them key tools for data analysts.
+
+- **Specialize in Cloud and Modern Tools**:
+Learning Azure, Snowflake, and AWS can significantly boost earning potential and align you with industry trends.
+
+- **Consider Niche Skills for High Salaries**:
+Explore Express, Looker, or SQL Server to target roles that offer specialized but lucrative opportunities.
+
+- **Supplement with General Productivity Tools**:
+Familiarity with PowerPoint, Word, and SharePoint can enhance communication and collaboration in professional settings.
+
+
 ![Most Optimal Skill](assets/q5.png)
 *Bar graph visualizing both the average salary, denoted by the blue bars, and the demand, denoted by the blue line, associated with each skill for the NYC Data Analyst jobs. I set a minimum of 10 job postings to elimitate outlier skills. I made this visualization in PowerBI using CSV data generated from my SQL query results*
 
